@@ -15,7 +15,7 @@ public class gestoreFileTest {
 	@Test
 	public void ottieniDimTest(){
 
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
 		System.out.println("Test ottieniDim");
 		
@@ -26,7 +26,7 @@ public class gestoreFileTest {
 	@Test
 	public void generaGrafoTest(){
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
 		assertEquals(15, ges.generaGrafo().getM());
 		assertEquals(15,ges.generaGrafo().getN());
@@ -37,7 +37,7 @@ public class gestoreFileTest {
 	@Test 
 	public void popolaGrafoTest(){
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
 		g = new Grafo(15, 15);
 		
@@ -52,7 +52,7 @@ public class gestoreFileTest {
 	@Test
 	public void toStringTest(){
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 	
 		g = new Grafo(2,2);
 		
@@ -73,7 +73,7 @@ public class gestoreFileTest {
 	@Test
 	public void popolaIOTest(){
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
 		int[] a = new int[ges.ottieniDim("localita consegna ci")];
 		ges.popolaIO(a, "localita consegna ci");

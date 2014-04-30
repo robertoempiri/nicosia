@@ -19,7 +19,7 @@ public class tokenTest {
 	@Test
 	public void muoviTokenTest(){
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		t = new Token(0, 0, ges.generaGrafo());
 		
 		t.minMove();

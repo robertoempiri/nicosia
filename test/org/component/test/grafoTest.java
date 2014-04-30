@@ -14,7 +14,7 @@ public class grafoTest {
 	
 	@Test
 	public void estraiArchi() {
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		g = ges.generaGrafo();
 		int[] a = g.estraiArchi(g, 0);
 		for (int i = 0; i<a.length; i++){
