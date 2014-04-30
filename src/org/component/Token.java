@@ -17,6 +17,8 @@ public class Token {
 		this.tempo = tempo;
 	}
 
+	/** Metodi di Classe **/
+	
 	public int getPosizione() {
 		return posizione;
 	}
@@ -41,6 +43,8 @@ public class Token {
 		this.tempo = tempo;
 	}
 
+	/** Metodi di Move **/
+	
 	public void minMove(Grafo g){
 
 		int posizione = getPosizione();
@@ -67,8 +71,10 @@ public class Token {
 				posizione = i;
 			}
 		}
-
+		
+		aggiornaTempo(archiDisp[posizione]);
 		setPosizione(posizione);
+	
 	}
 	
 	public void minMoveNoPrevious(Grafo g){
@@ -94,7 +100,7 @@ public class Token {
 //		System.out.println("Dim Vettore archi "+archiDisp.length);
 		
 		if (posizione<archiDisp.length-1){
-			
+//			System.out.println("1");
 			for(int i=0; i<archiDisp.length; i++) {
 				
 //				System.out.println("i "+i+" previous "+previous+" ");
@@ -106,14 +112,10 @@ public class Token {
 					posizione = i;
 				}
 			}
-			
-//			System.out.println("Primo for "+posizione);
-			setPrevious(temp);
-			setPosizione(posizione);
 		}
 		
 		if (posizione==archiDisp.length-1){
-
+//			System.out.println("2");
 			for(int i=0; i<archiDisp.length; i++) {
 
 //				System.out.println("i "+i+" previous "+previous+" ");
@@ -128,16 +130,20 @@ public class Token {
 					posizione = i;
 				}
 			}
-			
-//			System.out.println("Secondo for "+posizione);
-			setPrevious(temp);
-			setPosizione(posizione);
 		}
 		
-
+		aggiornaTempo(archiDisp[posizione]);
+		setPrevious(temp);
+		setPosizione(posizione);
 //		System.out.println("Nuova Posizione:"+getPosizione());
 //		System.out.println("Nuovo Precedente:"+getPrevious());
 		
+	}
+	
+	/** Metodi di Costo **/
+	
+	public void aggiornaTempo(int i){
+		this.tempo = this.tempo+i;
 	}
 	
 }

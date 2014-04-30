@@ -37,6 +37,7 @@ public class tokenTest {
 		
 		assertEquals(14, t.getPrevious());
 		assertEquals(12, t.getPosizione());
+		assertEquals(220, t.getTempo());
 	
 	}
 	
@@ -58,6 +59,7 @@ public class tokenTest {
 		t.minMoveNoPrevious(g);
 		
 		assertEquals(0, t.getPosizione());
+		assertEquals(224, t.getTempo());
 	
 	}
 	
@@ -68,16 +70,18 @@ public class tokenTest {
 		t = new Token(0, 0, 0);
 		g = ges.generaGrafo();
 
+		System.out.println("a");
 		t.minMoveNoPrevious(g);
 		assertEquals(12, t.getPosizione());
 		
+		System.out.println("b");
 		t.minMoveNoPrevious(g);
 		assertEquals(14, t.getPosizione());
-		
+
+		System.out.println("c");
 		t.minMoveNoPrevious(g);
-		
 		assertEquals(0, t.getPosizione());
-		
+		assertEquals(224, t.getTempo());
 
 	}
 }
