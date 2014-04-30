@@ -17,15 +17,67 @@ public class tokenTest {
 	public Token t;
 
 	@Test
-	public void muoviTokenTest(){
+	public void minMoveTest(){
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, ges.generaGrafo());
+		t = new Token(0, 0, 0);
+		g = ges.generaGrafo();
 		
-		t.minMove();
+		t.minMove(g);
 		
+		assertEquals(0, t.getPrevious());		
+		assertEquals(12, t.getPosizione());
+		
+		t.minMove(g);
+		
+		assertEquals(12, t.getPrevious());
+		assertEquals(14, t.getPosizione());
+		
+		t.minMove(g);
+		
+		assertEquals(14, t.getPrevious());
 		assertEquals(12, t.getPosizione());
 	
 	}
 	
+	@Test
+	public void minMoveNoPreviousTest(){
+		
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
+		t = new Token(0, 0, 0);
+		g = ges.generaGrafo();
+		
+		t.minMove(g);
+		
+		assertEquals(12, t.getPosizione());
+		
+		t.minMove(g);
+		
+		assertEquals(14, t.getPosizione());
+		
+		t.minMoveNoPrevious(g);
+		
+		assertEquals(0, t.getPosizione());
+	
+	}
+	
+	@Test
+	public void minMoveNoPreviousTest2(){
+
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
+		t = new Token(0, 0, 0);
+		g = ges.generaGrafo();
+
+		t.minMoveNoPrevious(g);
+		assertEquals(12, t.getPosizione());
+		
+		t.minMoveNoPrevious(g);
+		assertEquals(14, t.getPosizione());
+		
+		t.minMoveNoPrevious(g);
+		
+		assertEquals(0, t.getPosizione());
+		
+
+	}
 }

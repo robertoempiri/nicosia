@@ -11,7 +11,7 @@ public class Ottimizzazione{
 
 		gestoreFile ges = new gestoreFile("");
 		
-		ges.setPath("/Users/EMPIRI/git/nicosia/nicosia-java/src/main/resources/input.txt");
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 
 		Grafo g = ges.generaGrafo();
 		
@@ -26,7 +26,9 @@ public class Ottimizzazione{
 		Token[] arrayToken = new Token[nToken];
 		
 		System.out.println("Numero di mezzi a disposizione: "+arrayToken.length);
-
+		
+		Algoritmo1 alg = new Algoritmo1(g, io, arrayToken);
+		
 	}
 
 }
