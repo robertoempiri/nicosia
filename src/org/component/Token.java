@@ -47,14 +47,14 @@ public class Token {
 	
 	public void move(int nodo, Grafo g){
 		
-		int[] archiDisp = g.estraiArchi(g, getPosizione());
+		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
 //		g.toString(archiDisp);
 		setPrevious(getPosizione());
 //		System.out.println("nodo da visitare "+nodo+" valore archi target "+archiDisp[nodo-1]);
-//		System.out.println("posizione attuale: "+getPosizione()+"+1 Tempo: "+getTempo());
+//		System.out.println("posizione attuale: "+getPosizione()+" Tempo: "+getTempo());
 		aggiornaTempo(archiDisp[nodo-1]);
-		setPosizione(nodo-1);
-//		System.out.println("posizione aggiornata: "+getPosizione()+"+1 Tempo: "+getTempo());
+		setPosizione(nodo);
+//		System.out.println("posizione aggiornata: "+getPosizione()+" Tempo aggiornato: "+getTempo());
 		
 	}
 	
@@ -69,97 +69,37 @@ public class Token {
 	
 	public void minMove(Grafo g){
 
-		int posizione = getPosizione();
-		setPrevious(getPosizione());
-		
-		int[] archiDisp = g.estraiArchi(g, posizione);
-		int minimo;
-		
-		if (archiDisp[0]!=0) {
-			minimo = archiDisp[0];
-			posizione = 0;
-		} else { 
-			minimo = archiDisp[1];
-			posizione = 1;
-			}
-
+		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
+		int minimo = 10000;
+		int index = 0;
 			
 		for(int i=0; i<archiDisp.length; i++) {
-			
-			if (archiDisp[i]<minimo && archiDisp[i]!=0) {
-				
+
+			if (archiDisp[i]<minimo && archiDisp[i]!=0) {	
 				minimo = archiDisp[i];
-				
-				posizione = i;
+				index = i;
 			}
 		}
 		
-		aggiornaTempo(archiDisp[posizione]);
-		setPosizione(posizione);
+		move(index+1, g);
 	
 	}
 	
 	public void minMoveNoPrevious(Grafo g){
 
-		int posizione = getPosizione();
-		int previous = getPrevious();
-		int temp = getPosizione();
-		
-		int[] archiDisp = g.estraiArchi(g, posizione);
-		int minimo;
-		
-		if (archiDisp[0]!=0) {
-			minimo = archiDisp[0];
-			posizione = 0;
-		} else {
-			minimo = archiDisp[1];
-			posizione = 1;
-		}
+		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
+		int minimo = 10000;
+		int index = 10000;
+			
+		for(int i=0; i<archiDisp.length; i++) {
 
-//		System.out.println("Posizione:"+getPosizione());
-//		System.out.println("Precedente:"+getPrevious());
-		
-//		System.out.println("Dim Vettore archi "+archiDisp.length);
-		
-		if (posizione<archiDisp.length-1){
-//			System.out.println("1");
-			for(int i=0; i<archiDisp.length; i++) {
-				
-//				System.out.println("i "+i+" previous "+previous+" ");
-				
-				if (i!=previous && archiDisp[i]<minimo && archiDisp[i]!=0) {
-
-					minimo = archiDisp[i];
-
-					posizione = i;
-				}
+			if (i !=getPrevious()-1 && archiDisp[i]<minimo && archiDisp[i]!=0) {	
+				minimo = archiDisp[i];
+				index = i;
 			}
 		}
 		
-		if (posizione==archiDisp.length-1){
-//			System.out.println("2");
-			for(int i=0; i<archiDisp.length; i++) {
-
-//				System.out.println("i "+i+" previous "+previous+" ");
-//				System.out.println("minimo "+minimo);
-				
-				if (i != previous && archiDisp[i]<minimo && archiDisp[i]!=0) {
-
-//					System.out.println("i "+i+"previous "+previous+"");
-					
-					minimo = archiDisp[i];
-
-					posizione = i;
-				}
-			}
-		}
-		
-		aggiornaTempo(archiDisp[posizione]);
-		setPrevious(temp);
-		setPosizione(posizione);
-//		System.out.println("Nuova Posizione:"+getPosizione());
-//		System.out.println("Nuovo Precedente:"+getPrevious());
-		
+		move(index+1, g);
 	}
 	
 	/** Metodi di Costo **/

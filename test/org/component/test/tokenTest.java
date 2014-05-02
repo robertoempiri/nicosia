@@ -21,23 +21,23 @@ public class tokenTest {
 	public void minMoveTest(){
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, 0);
+		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 		
 		t.minMove(g);
 		
-		assertEquals(0, t.getPrevious());		
-		assertEquals(12, t.getPosizione());
+		assertEquals(1, t.getPrevious());		
+		assertEquals(13, t.getPosizione());
 		
 		t.minMove(g);
 		
-		assertEquals(12, t.getPrevious());
-		assertEquals(14, t.getPosizione());
+		assertEquals(13, t.getPrevious());
+		assertEquals(15, t.getPosizione());
 		
 		t.minMove(g);
 		
-		assertEquals(14, t.getPrevious());
-		assertEquals(12, t.getPosizione());
+		assertEquals(15, t.getPrevious());
+		assertEquals(13, t.getPosizione());
 		assertEquals(220, t.getTempo());
 	
 	}
@@ -46,20 +46,20 @@ public class tokenTest {
 	public void minMoveNoPreviousTest(){
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, 0);
+		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 		
 		t.minMove(g);
 		
-		assertEquals(12, t.getPosizione());
+		assertEquals(13, t.getPosizione());
 		
 		t.minMove(g);
 		
-		assertEquals(14, t.getPosizione());
+		assertEquals(15, t.getPosizione());
 		
 		t.minMoveNoPrevious(g);
 		
-		assertEquals(0, t.getPosizione());
+		assertEquals(1, t.getPosizione());
 		assertEquals(224, t.getTempo());
 	
 	}
@@ -68,17 +68,17 @@ public class tokenTest {
 	public void minMoveNoPreviousTest2(){
 
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, 0);
+		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 
 		t.minMoveNoPrevious(g);
-		assertEquals(12, t.getPosizione());
+		assertEquals(13, t.getPosizione());
 		
 		t.minMoveNoPrevious(g);
-		assertEquals(14, t.getPosizione());
+		assertEquals(15, t.getPosizione());
 
 		t.minMoveNoPrevious(g);
-		assertEquals(0, t.getPosizione());
+		assertEquals(1, t.getPosizione());
 		assertEquals(224, t.getTempo());
 
 	}
@@ -86,24 +86,24 @@ public class tokenTest {
 	@Test
 	public void movePercorsoTest(){
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, 0);
+		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 		In_Out io = ges.generaIO();
 		t.movePercorso(io.getConsegne(),g);
 		assertEquals(855,t.getTempo());
-		assertEquals(13,t.getPosizione());
+		assertEquals(14,t.getPosizione());
 	}
 	
 	@Test 
 	public void movePercorsoAndRitornoTest(){
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(0, 0, 0);
+		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 		In_Out io = ges.generaIO();
 //		io.toString(io);
 		t.movePercorso(io.getConsegne(), g);
 		t.move(1, g);
 		assertEquals(944,t.getTempo());
-		assertEquals(0,t.getPosizione());
+		assertEquals(1,t.getPosizione());
 	}
 }
