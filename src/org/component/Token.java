@@ -45,6 +45,28 @@ public class Token {
 
 	/** Metodi di Move **/
 	
+	public void move(int nodo, Grafo g){
+		
+		int[] archiDisp = g.estraiArchi(g, getPosizione());
+//		g.toString(archiDisp);
+		setPrevious(getPosizione());
+//		System.out.println("nodo da visitare "+nodo+" valore archi target "+archiDisp[nodo-1]);
+//		System.out.println("posizione attuale: "+getPosizione()+"+1 Tempo: "+getTempo());
+		aggiornaTempo(archiDisp[nodo-1]);
+		setPosizione(nodo-1);
+//		System.out.println("posizione aggiornata: "+getPosizione()+"+1 Tempo: "+getTempo());
+		
+	}
+	
+	public void movePercorso(int[] nodi, Grafo g){
+		
+		for (int i = 0; i<nodi.length; i++){
+
+			move(nodi[i],g);
+			
+		}
+	}
+	
 	public void minMove(Grafo g){
 
 		int posizione = getPosizione();

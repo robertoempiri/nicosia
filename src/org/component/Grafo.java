@@ -48,8 +48,9 @@ public class Grafo {
 	}
 
 	public int[] estraiArchi(Grafo g, int i){
+		int[][] a = g.getGrafo();
 		if (i<g.getN()) {
-			return g.getGrafo()[i];
+			return a[i];
 		} else return null;
 
 	}
@@ -71,6 +72,20 @@ public class Grafo {
 				}
 			}
 		}
+	}
+	
+	public void toString(int[] archiDisp){
+		
+		System.out.println("Set di archi a disposizione: ");
+		
+		for (int i = 0; i<archiDisp.length; i++){
+			if (i==archiDisp.length-1) {
+				System.out.println("["+archiDisp[i]+"]");
+			} else {
+			System.out.print("["+archiDisp[i]+"]");
+			}
+		}
+		
 	}
 
 }

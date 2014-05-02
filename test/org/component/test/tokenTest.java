@@ -2,6 +2,7 @@ package org.component.test;
 
 import static org.junit.Assert.*;
 
+import org.component.In_Out;
 import org.component.Token;
 import org.component.gestoreFile;
 import org.component.Grafo;
@@ -70,18 +71,39 @@ public class tokenTest {
 		t = new Token(0, 0, 0);
 		g = ges.generaGrafo();
 
-		System.out.println("a");
 		t.minMoveNoPrevious(g);
 		assertEquals(12, t.getPosizione());
 		
-		System.out.println("b");
 		t.minMoveNoPrevious(g);
 		assertEquals(14, t.getPosizione());
 
-		System.out.println("c");
 		t.minMoveNoPrevious(g);
 		assertEquals(0, t.getPosizione());
 		assertEquals(224, t.getTempo());
 
+	}
+	
+	@Test
+	public void movePercorsoTest(){
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
+		t = new Token(0, 0, 0);
+		g = ges.generaGrafo();
+		In_Out io = ges.generaIO();
+		t.movePercorso(io.getConsegne(),g);
+		assertEquals(855,t.getTempo());
+		assertEquals(13,t.getPosizione());
+	}
+	
+	@Test 
+	public void movePercorsoAndRitornoTest(){
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
+		t = new Token(0, 0, 0);
+		g = ges.generaGrafo();
+		In_Out io = ges.generaIO();
+//		io.toString(io);
+		t.movePercorso(io.getConsegne(), g);
+		t.move(1, g);
+		assertEquals(944,t.getTempo());
+		assertEquals(0,t.getPosizione());
 	}
 }
