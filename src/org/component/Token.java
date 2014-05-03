@@ -122,7 +122,7 @@ public class Token {
 
 		for(int i1 = 0;i1<io.getRitiri().length;i1++){
 			if (posizione == io.getRitiri()[i1]){
-				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
+//				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
 				io.setRitiri(io.aggiornaIo(io.getRitiri()[i1], io.getRitiri()));
 				aggiornaTempo(20);
 				return true;
