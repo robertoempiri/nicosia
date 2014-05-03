@@ -100,10 +100,21 @@ public class tokenTest {
 		t = new Token(1, 1, 0);
 		g = ges.generaGrafo();
 		In_Out io = ges.generaIO();
-//		io.toString(io);
+
 		t.movePercorso(io.getConsegne(), g);
 		t.move(1, g);
 		assertEquals(944,t.getTempo());
 		assertEquals(1,t.getPosizione());
 	}
+	
+	@Test
+	public void consegnaRitiroTest(){
+		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
+		t = new Token(4,1,0);
+		g = ges.generaGrafo();
+		In_Out io = ges.generaIO();
+		assertTrue(t.consegnaRitiro(io, t.getPosizione()));
+		assertEquals(20, t.getTempo());
+	}
+	
 }

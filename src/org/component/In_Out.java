@@ -25,6 +25,23 @@ public class In_Out {
 	public void setRitiri(int[] ritiri) {
 		this.ritiri = ritiri;
 	}
+	
+	public int[] aggiornaIo(int a, int[] io){
+		
+		int[] aggiornato = new int[io.length-1];
+		int i = 0;
+		int agg = 0;
+		
+		while(i<io.length){
+			if (io[i]!=a){
+				aggiornato[agg] = io[i];
+				agg++;
+			}
+			i++;
+		}
+	
+		return aggiornato;
+	}
 
 	public void toString(In_Out io){
 

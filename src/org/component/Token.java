@@ -108,4 +108,29 @@ public class Token {
 		this.tempo = this.tempo+i;
 	}
 	
+	/** Metodi di Consegna **/
+	
+	public boolean consegnaRitiro(In_Out io, int posizione){
+
+		for(int i = 0;i<io.getConsegne().length;i++){
+			if (posizione == io.getConsegne()[i]){
+				io.setConsegne(io.aggiornaIo(io.getConsegne()[i], io.getConsegne()));
+				aggiornaTempo(20);
+				return true;
+			}
+		}
+
+		for(int i1 = 0;i1<io.getRitiri().length;i1++){
+			if (posizione == io.getRitiri()[i1]){
+				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
+				io.setRitiri(io.aggiornaIo(io.getRitiri()[i1], io.getRitiri()));
+				aggiornaTempo(20);
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
 }
