@@ -1,0 +1,3 @@
+add this to site and then start the installation
+
+FindBugs - http://findbugs.cs.umd.edu/eclipse-daily
