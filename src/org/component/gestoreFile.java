@@ -94,7 +94,7 @@ public class gestoreFile {
 				finito = true;
 			}
 
-			if (s.equals("Tempi tij")) popola = true;
+			if (s!=null && s.equals("Tempi tij")) popola = true;
 
 		}
 
@@ -149,7 +149,7 @@ public class gestoreFile {
 
 			}
 
-			if (s.equals(alpha)) misura = true;
+			if (s!=null && s.equals(alpha)) misura = true;
 
 		}
 
@@ -232,7 +232,7 @@ public class gestoreFile {
 				finito = true;
 			}
 
-			if (s.equals(alpha)) popola = true;
+			if (s!=null && s.equals(alpha)) popola = true;
 
 		}
 
@@ -272,7 +272,7 @@ public class gestoreFile {
 				finito = true;
 			}
 		
-			if (s.equals(alpha)) {
+			if (s!=null && s.equals(alpha)) {
 				get = true;
 			}
 		

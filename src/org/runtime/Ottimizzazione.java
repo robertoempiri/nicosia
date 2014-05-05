@@ -29,6 +29,8 @@ public class Ottimizzazione{
 		
 		Algoritmo1 alg = new Algoritmo1(g, io, arrayToken);
 		
+		alg.io.toString(io);
+		
 	}
 
 }
