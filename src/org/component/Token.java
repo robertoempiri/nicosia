@@ -111,7 +111,7 @@ public class Token {
 		move(index+1);
 	}
 	
-	public void moveToAIO(int[] a){
+	public void move2IO(int[] a){
 		
 		if (a.length!=0){
 			move(a[0]);
@@ -119,7 +119,7 @@ public class Token {
 		
 	}
 	
-	public void minMoveToAIO(In_Out io){
+	public void minMove2IO(In_Out io){
 		int minimo = 10000;
 		int index = 10000;
 			

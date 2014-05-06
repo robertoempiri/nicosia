@@ -100,38 +100,38 @@ public class tokenTest {
 	}
 	
 	@Test
-	public void moveToAIO(){
+	public void move2IO(){
 
 		t = new Token(1, 1, 0, ges.generaGrafo());
 		In_Out io = ges.generaIO();
-		t.moveToAIO(io.getConsegne());
+		t.move2IO(io.getConsegne());
 		assertEquals(3, t.getPosizione());
 		assertEquals(82, t.getTempo());
 	}
 	
 	@Test
-	public void moveNotToAIO(){
+	public void moveNot2IO(){
 
 		t = new Token(1, 1, 0, ges.generaGrafo());
 		In_Out io = ges.generaIO();
 		int fine = io.getConsegne().length;
 		
 		for(int i = 0; i<fine; i++){
-			t.moveToAIO(io.getConsegne());
+			t.move2IO(io.getConsegne());
 			t.consegnaRitiro(io, t.getPosizione());
 		}
 		
 		assertEquals(0, io.getConsegne().length);
 		ges.generaGrafo().toString(io.getConsegne());
-		t.moveToAIO(io.getConsegne());
+		t.move2IO(io.getConsegne());
 		
 	}
 	
 	@Test
-	public void minMoveToAIO(){
+	public void minMove2IO(){
 		t = new Token(1, 1, 0, ges.generaGrafo());
 		In_Out io = ges.generaIO();
-		t.minMoveToAIO(io);
+		t.minMove2IO(io);
 		assertEquals(13, t.getPosizione());
 		assertEquals(74, t.getTempo());
 		t.consegnaRitiro(io, t.getPosizione());
