@@ -16,7 +16,7 @@ public class grafoTest {
 	public void estraiArchi() {
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		g = ges.generaGrafo();
-		int[] a = g.estraiArchi(g, 0);
+		int[] a = g.estraiArchi(0);
 		for (int i = 0; i<a.length; i++){
 			System.out.print(a[i]+" ");
 		}

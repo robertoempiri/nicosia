@@ -47,9 +47,9 @@ public class Grafo {
 		this.grafo = new int[this.m][n];
 	}
 
-	public int[] estraiArchi(Grafo g, int i){
-		int[][] a = g.getGrafo();
-		if (i<g.getN()) {
+	public int[] estraiArchi(int i){
+		int[][] a = getGrafo();
+		if (i<getN()) {
 			return a[i];
 		} else return null;
 

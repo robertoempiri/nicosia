@@ -5,16 +5,21 @@ public class Token {
 	public int posizione;
 	public int previous;
 	public int tempo;
+	public int[] archiDisp;
+	public Grafo g;
 
 	public Token(int posizione, int tempo){
 		this.posizione = posizione;
 		this.tempo = tempo;
+		this.archiDisp = g.estraiArchi(getPosizione()-1);
 	}
 	
-	public Token(int posizione, int previous, int tempo){
+	public Token(int posizione, int previous, int tempo, Grafo g){
 		this.posizione = posizione;
 		this.previous = previous;
 		this.tempo = tempo;
+		this.g = g;
+		this.archiDisp = g.estraiArchi(getPosizione()-1);
 	}
 
 	/** Metodi di Classe **/
@@ -42,34 +47,39 @@ public class Token {
 	public void setTempo(int tempo) {
 		this.tempo = tempo;
 	}
+	
+	public void setArchiDisp(){
+		this.archiDisp = g.estraiArchi(getPosizione()-1);
+	}
 
 	/** Metodi di Move **/
 	
-	public void move(int nodo, Grafo g){
+	public void move(int nodo){
 		
-		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
+//		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
 //		g.toString(archiDisp);
 		setPrevious(getPosizione());
 //		System.out.println("nodo da visitare "+nodo+" valore archi target "+archiDisp[nodo-1]);
 //		System.out.println("posizione attuale: "+getPosizione()+" Tempo: "+getTempo());
 		aggiornaTempo(archiDisp[nodo-1]);
 		setPosizione(nodo);
+		setArchiDisp();
+		
 //		System.out.println("posizione aggiornata: "+getPosizione()+" Tempo aggiornato: "+getTempo());
 		
 	}
 	
-	public void movePercorso(int[] nodi, Grafo g){
+	public void movePercorso(int[] nodi){
 		
 		for (int i = 0; i<nodi.length; i++){
 
-			move(nodi[i],g);
+			move(nodi[i]);
 			
 		}
 	}
 	
-	public void minMove(Grafo g){
+	public void minMove(){
 
-		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
 		int minimo = 10000;
 		int index = 0;
 			
@@ -81,13 +91,12 @@ public class Token {
 			}
 		}
 		
-		move(index+1, g);
+		move(index+1);
 	
 	}
 	
-	public void minMoveNoPrevious(Grafo g){
+	public void minMoveNoPrevious(){
 
-		int[] archiDisp = g.estraiArchi(g, getPosizione()-1);
 		int minimo = 10000;
 		int index = 10000;
 			
@@ -99,7 +108,39 @@ public class Token {
 			}
 		}
 		
-		move(index+1, g);
+		move(index+1);
+	}
+	
+	public void moveToAIO(int[] a){
+		
+		if (a.length!=0){
+			move(a[0]);
+		}
+		
+	}
+	
+	public void minMoveToAIO(In_Out io){
+		int minimo = 10000;
+		int index = 10000;
+			
+		for(int i=0; i<io.getConsegne().length; i++) {
+
+//			System.out.print("["+archiDisp[io.getConsegne()[i]-1]+"] ");
+			if (archiDisp[io.getConsegne()[i]-1]<minimo && archiDisp[io.getConsegne()[i]-1]!=0) {	
+				minimo = archiDisp[io.getConsegne()[i]-1];
+				index = io.getConsegne()[i];
+			}
+		}
+		
+		for(int i=0; i<io.getRitiri().length; i++) {
+
+			if (archiDisp[io.getRitiri()[i]-1]<minimo && archiDisp[io.getRitiri()[i]-1]!=0) {	
+				minimo = archiDisp[io.getRitiri()[i]-1];
+				index = io.getRitiri()[i];
+			}
+		}
+		
+		move(index);
 	}
 	
 	/** Metodi di Costo **/
@@ -110,13 +151,12 @@ public class Token {
 	
 	/** Metodi di Consegna **/
 	
-	public boolean consegnaRitiro(In_Out io, int posizione){
+	public void consegnaRitiro(In_Out io, int posizione){
 
 		for(int i = 0;i<io.getConsegne().length;i++){
 			if (posizione == io.getConsegne()[i]){
 				io.setConsegne(io.aggiornaIo(io.getConsegne()[i], io.getConsegne()));
 				aggiornaTempo(20);
-				return true;
 			}
 		}
 
@@ -125,11 +165,8 @@ public class Token {
 //				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
 				io.setRitiri(io.aggiornaIo(io.getRitiri()[i1], io.getRitiri()));
 				aggiornaTempo(20);
-				return true;
 			}
 		}
-
-		return false;
 
 	}
 

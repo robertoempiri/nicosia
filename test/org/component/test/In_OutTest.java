@@ -20,8 +20,8 @@ public class In_OutTest {
 	public void aggiornaIOTest() {
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		t = new Token(4,1,0);
-		g = ges.generaGrafo();
+		g = ges.generaGrafo();		
+		t = new Token(4,1,0,g);
 		io = ges.generaIO();
 		
 		int[] a = io.aggiornaIo(4, io.getRitiri());	
@@ -31,10 +31,4 @@ public class In_OutTest {
 		}
 
 	}
-
-	@Test
-	public void test2() {
-
-	}
-
 }
