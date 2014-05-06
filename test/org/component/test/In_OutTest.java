@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import org.component.In_Out;
 import org.component.Token;
-import org.component.gestoreFile;
+import org.component.GestoreFile;
 import org.component.Grafo;
 import org.junit.Test;
 
 public class In_OutTest {
 	
-	private gestoreFile ges = new gestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
+	private GestoreFile ges = new GestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
 	private Grafo g = ges.generaGrafo();;
 	Token t;
 	In_Out io;

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class Algoritmo1Test {
 
-	gestoreFile ges = new gestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
+	GestoreFile ges = new GestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
 	In_Out io = ges.generaIO();
 	Grafo g = ges.generaGrafo();
 	Token[] arrayToken = new Token[ges.parametri("Numero mezzi m")];
@@ -28,6 +28,23 @@ public class Algoritmo1Test {
 		for (int i = 0;i<arrayToken.length; i++){
 			assertEquals(1, arrayToken[i].getPosizione());
 		}
+	}
+	
+	@Test
+	public void greedyPlusTest() {
+		
+		for (int i = 0;i<arrayToken.length; i++){
+			arrayToken[i] = new Token(1,0,0,g);
+		}
+		
+		alg = new Algoritmo1(g, io, arrayToken);
+		
+		alg.greedyPlus();
+		
+		for (int i = 0;i<arrayToken.length; i++){
+			assertEquals(1, arrayToken[i].getPosizione());
+		}
+		
 	}
 
 }

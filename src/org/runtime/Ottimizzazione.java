@@ -3,13 +3,13 @@ package org.runtime;
 import org.component.Grafo;
 import org.component.In_Out;
 import org.component.Token;
-import org.component.gestoreFile;
+import org.component.GestoreFile;
 
 public class Ottimizzazione{
 	
 	public static void main(String[] args) {
 
-		gestoreFile ges = new gestoreFile("");
+		GestoreFile ges = new GestoreFile("");
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 
@@ -33,7 +33,7 @@ public class Ottimizzazione{
 		
 		Algoritmo1 alg = new Algoritmo1(g, io, arrayToken);
 		
-		alg.io.toString(io);
+		alg.greedy();
 		
 	}
 

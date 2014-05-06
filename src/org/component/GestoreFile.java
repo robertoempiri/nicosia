@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class gestoreFile {
+public class GestoreFile {
 
 	private Grafo g;
 	private String path;
@@ -13,7 +13,7 @@ public class gestoreFile {
 	private BufferedReader b;
 	private In_Out io;
 	
-	public gestoreFile(String path){
+	public GestoreFile(String path){
 		this.path = path;
 	}
 

@@ -3,12 +3,12 @@ package org.component.test;
 import static org.junit.Assert.*;
 
 import org.component.Grafo;
-import org.component.gestoreFile;
+import org.component.GestoreFile;
 import org.junit.Test;
 
 public class grafoTest {
 
-	private gestoreFile ges = new gestoreFile("");;
+	private GestoreFile ges = new GestoreFile("");;
 	
 	Grafo g;
 	

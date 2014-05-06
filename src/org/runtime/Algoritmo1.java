@@ -18,6 +18,10 @@ public class Algoritmo1 {
 	
 	public void greedy(){
 		
+		System.out.println();
+		System.out.println("Esecuzione algoritmo GREEDY");
+		System.out.println();
+		
 		while(!io.verificaCompleto()){
 
 			for (int i = 0; i<arrayToken.length; i++){
@@ -35,12 +39,46 @@ public class Algoritmo1 {
 			arrayToken[i].move(1);
 			System.out.println("Macchina n: "+i+" Posizione corrente: "
 					+arrayToken[i].getPosizione()+" Posizione precedente: "
-							+arrayToken[i].getPrevious()+"Tempo attuale: "
+							+arrayToken[i].getPrevious()+" Tempo attuale: "
 								+arrayToken[i].getTempo());
 		}
 		
+		System.out.println();
+		System.out.println("FINE ESECUZIONE");
+		System.out.println();
+		
 	}
+	
+	public void greedyPlus(){
+		
+		System.out.println();
+		System.out.println("Esecuzione algoritmo GREEDY PLUS");
+		System.out.println();
+		
+		while(!io.verificaCompleto()){
 
-	
-	
+			for (int i = 0; i<arrayToken.length; i++){
+				arrayToken[i].minMove2IO(io);
+				arrayToken[i].consegnaRitiro(io, arrayToken[i].getPosizione());
+				System.out.println("Macchina n: "+i+" Posizione corrente: "
+						+arrayToken[i].getPosizione()+" Posizione precedente: "
+								+arrayToken[i].getPrevious()+" Tempo attuale: "
+									+arrayToken[i].getTempo());
+			}
+			
+		}
+		
+		for (int i = 0; i<arrayToken.length; i++){
+			arrayToken[i].move(1);
+			System.out.println("Macchina n: "+i+" Posizione corrente: "
+					+arrayToken[i].getPosizione()+" Posizione precedente: "
+							+arrayToken[i].getPrevious()+" Tempo attuale: "
+								+arrayToken[i].getTempo());
+		}
+		
+		System.out.println();
+		System.out.println("FINE ESECUZIONE");
+		System.out.println();
+		
+	}
 }
