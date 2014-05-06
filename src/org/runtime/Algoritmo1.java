@@ -22,8 +22,21 @@ public class Algoritmo1 {
 
 			for (int i = 0; i<arrayToken.length; i++){
 				arrayToken[i].move2IO(io);
+				arrayToken[i].consegnaRitiro(io, arrayToken[i].getPosizione());
+				System.out.println("Macchina n: "+i+" Posizione corrente: "
+						+arrayToken[i].getPosizione()+" Posizione precedente: "
+								+arrayToken[i].getPrevious()+" Tempo attuale: "
+									+arrayToken[i].getTempo());
 			}
 			
+		}
+		
+		for (int i = 0; i<arrayToken.length; i++){
+			arrayToken[i].move(1);
+			System.out.println("Macchina n: "+i+" Posizione corrente: "
+					+arrayToken[i].getPosizione()+" Posizione precedente: "
+							+arrayToken[i].getPrevious()+"Tempo attuale: "
+								+arrayToken[i].getTempo());
 		}
 		
 	}
