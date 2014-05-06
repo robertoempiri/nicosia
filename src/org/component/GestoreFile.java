@@ -281,6 +281,21 @@ public class GestoreFile {
 		return a;
 		
 	}
+	
+	public Token[] generaArrayToken(){
+		
+		int nToken = parametri("Numero mezzi m");
+		
+		Token[] arrayToken = new Token[nToken];
+		
+		System.out.println("Numero di mezzi a disposizione: "+arrayToken.length);
+		
+		for (int i = 0;i<arrayToken.length; i++){
+			arrayToken[i] = new Token(1,0,0,g);
+		}
+		
+		return arrayToken;
+	}
 
 	/** Metodi di classe **/
 

@@ -2,7 +2,6 @@ package org.runtime;
 
 import org.component.Grafo;
 import org.component.In_Out;
-import org.component.Token;
 import org.component.GestoreFile;
 
 public class Ottimizzazione{
@@ -21,19 +20,13 @@ public class Ottimizzazione{
 		
 		io.toString(io);
 		
-		int nToken = ges.parametri("Numero mezzi m");
-		
-		Token[] arrayToken = new Token[nToken];
-		
-		System.out.println("Numero di mezzi a disposizione: "+arrayToken.length);
-		
-		for (int i = 0;i<arrayToken.length; i++){
-			arrayToken[i] = new Token(1,0,0,g);
-		}
-		
-		Algoritmo1 alg = new Algoritmo1(g, io, arrayToken);
+		Algoritmo1 alg = new Algoritmo1(g, ges.generaIO(), ges.generaArrayToken());
 		
 		alg.greedy();
+		
+		Algoritmo1 alg2 = new Algoritmo1(g, ges.generaIO(), ges.generaArrayToken());
+		
+		alg2.greedyPlus();
 		
 	}
 
