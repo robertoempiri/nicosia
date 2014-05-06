@@ -1,16 +1,16 @@
 Macchina n: 0 Posizione corrente: 3 Posizione precedente: 1 Tempo attuale: 102
-Macchina n: 1 Posizione corrente: 5 Posizione precedente: 1 Tempo attuale: 142
-Macchina n: 0 Posizione corrente: 7 Posizione precedente: 3 Tempo attuale: 264
-Macchina n: 1 Posizione corrente: 11 Posizione precedente: 5 Tempo attuale: 305
-Macchina n: 0 Posizione corrente: 9 Posizione precedente: 7 Tempo attuale: 427
-Macchina n: 1 Posizione corrente: 2 Posizione precedente: 11 Tempo attuale: 424
-Macchina n: 0 Posizione corrente: 4 Posizione precedente: 9 Tempo attuale: 593
-Macchina n: 1 Posizione corrente: 6 Posizione precedente: 2 Tempo attuale: 585
-Macchina n: 0 Posizione corrente: 15 Posizione precedente: 4 Tempo attuale: 734
-Macchina n: 1 Posizione corrente: 8 Posizione precedente: 6 Tempo attuale: 754
-Macchina n: 0 Posizione corrente: 14 Posizione precedente: 15 Tempo attuale: 837
-Macchina n: 1 Posizione corrente: 10 Posizione precedente: 8 Tempo attuale: 920
-Macchina n: 0 Posizione corrente: 12 Posizione precedente: 14 Tempo attuale: 996
-Macchina n: 1 Posizione corrente: 13 Posizione precedente: 10 Tempo attuale: 1084
-Macchina n: 0 Posizione corrente: 1 Posizione precedente: 12Tempo attuale: 1133
-Macchina n: 1 Posizione corrente: 1 Posizione precedente: 13Tempo attuale: 1158
+Macchina n: 1 Posizione corrente: 2 Posizione precedente: 1 Tempo attuale: 109
+Macchina n: 0 Posizione corrente: 4 Posizione precedente: 3 Tempo attuale: 212
+Macchina n: 1 Posizione corrente: 6 Posizione precedente: 2 Tempo attuale: 270
+Macchina n: 0 Posizione corrente: 5 Posizione precedente: 4 Tempo attuale: 358
+Macchina n: 1 Posizione corrente: 8 Posizione precedente: 6 Tempo attuale: 439
+Macchina n: 0 Posizione corrente: 7 Posizione precedente: 5 Tempo attuale: 524
+Macchina n: 1 Posizione corrente: 11 Posizione precedente: 8 Tempo attuale: 602
+Macchina n: 0 Posizione corrente: 10 Posizione precedente: 7 Tempo attuale: 687
+Macchina n: 1 Posizione corrente: 9 Posizione precedente: 11 Tempo attuale: 765
+Macchina n: 0 Posizione corrente: 12 Posizione precedente: 10 Tempo attuale: 848
+Macchina n: 1 Posizione corrente: 15 Posizione precedente: 9 Tempo attuale: 922
+Macchina n: 0 Posizione corrente: 14 Posizione precedente: 12 Tempo attuale: 1007
+Macchina n: 1 Posizione corrente: 13 Posizione precedente: 15 Tempo attuale: 1015
+Macchina n: 0 Posizione corrente: 1 Posizione precedente: 14 Tempo attuale: 1096
+Macchina n: 1 Posizione corrente: 1 Posizione precedente: 13 Tempo attuale: 1089
