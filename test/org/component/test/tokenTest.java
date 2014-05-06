@@ -104,9 +104,8 @@ public class tokenTest {
 
 		t = new Token(1, 1, 0, ges.generaGrafo());
 		In_Out io = ges.generaIO();
-		t.move2IO(io.getConsegne());
-		assertEquals(3, t.getPosizione());
-		assertEquals(82, t.getTempo());
+		assertTrue(t.move2IO(io));
+
 	}
 	
 	@Test
@@ -114,16 +113,14 @@ public class tokenTest {
 
 		t = new Token(1, 1, 0, ges.generaGrafo());
 		In_Out io = ges.generaIO();
-		int fine = io.getConsegne().length;
 		
-		for(int i = 0; i<fine; i++){
-			t.move2IO(io.getConsegne());
+		while(!io.verificaCompleto()) {
+			assertTrue(t.move2IO(io));
 			t.consegnaRitiro(io, t.getPosizione());
+			io.toString(io);
 		}
 		
-		assertEquals(0, io.getConsegne().length);
-		ges.generaGrafo().toString(io.getConsegne());
-		t.move2IO(io.getConsegne());
+		assertFalse(t.move2IO(io));
 		
 	}
 	

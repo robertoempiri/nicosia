@@ -16,7 +16,17 @@ public class Algoritmo1 {
 		this.arrayToken = arrayToken;
 	}
 	
-	
+	public void greedy(){
+		
+		while(!io.verificaCompleto()){
+
+			for (int i = 0; i<arrayToken.length; i++){
+				arrayToken[i].move2IO(io);
+			}
+			
+		}
+		
+	}
 
 	
 	

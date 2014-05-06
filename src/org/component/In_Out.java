@@ -42,6 +42,16 @@ public class In_Out {
 	
 		return aggiornato;
 	}
+	
+	public boolean verificaCompleto(){
+		
+		if (this.consegne.length==0 && this.ritiri.length==0) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 
 	public void toString(In_Out io){
 

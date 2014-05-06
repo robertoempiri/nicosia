@@ -27,6 +27,10 @@ public class Ottimizzazione{
 		
 		System.out.println("Numero di mezzi a disposizione: "+arrayToken.length);
 		
+		for (int i = 0;i<arrayToken.length; i++){
+			arrayToken[i] = new Token(1,0,0,g);
+		}
+		
 		Algoritmo1 alg = new Algoritmo1(g, io, arrayToken);
 		
 		alg.io.toString(io);

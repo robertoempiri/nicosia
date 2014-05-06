@@ -111,11 +111,32 @@ public class Token {
 		move(index+1);
 	}
 	
-	public void move2IO(int[] a){
+	public boolean move2IO(In_Out io){
 		
-		if (a.length!=0){
-			move(a[0]);
+		double i;
+
+		if (!io.verificaCompleto()) {
+			i = Math.random();
+			
+			if (i<=0.5 && io.getConsegne().length!=0){
+				move(io.getConsegne()[0]);
+				return true;
+			}
+
+			if (i>0.5 && io.getRitiri().length!=0){
+				move(io.getRitiri()[0]);
+				return true;
+			}
+			
+		} else if (io.getConsegne().length!=0){
+			move(io.getConsegne()[0]);
+			return true;
+		} else if (io.getRitiri().length!=0){
+			move(io.getRitiri()[0]);
+			return true;
 		}
+		
+		return false;
 		
 	}
 	

@@ -10,17 +10,14 @@ import org.junit.Test;
 
 public class In_OutTest {
 	
-	private gestoreFile ges = new gestoreFile("");;
-	
-	Grafo g;
+	private gestoreFile ges = new gestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
+	private Grafo g = ges.generaGrafo();;
 	Token t;
 	In_Out io;
 
 	@Test
 	public void aggiornaIOTest() {
-		
-		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		g = ges.generaGrafo();		
+
 		t = new Token(4,1,0,g);
 		io = ges.generaIO();
 		
@@ -29,6 +26,17 @@ public class In_OutTest {
 		for(int i = 0; i<a.length; i++){
 			assertNotEquals(4, a[i]);
 		}
-
+	}
+	
+	@Test
+	public void verificaCompletoTest(){
+		
+		int[] a = new int[0];
+		int[] b = new int[0];
+		In_Out io1 = new In_Out(a,b);
+		assertTrue(io1.verificaCompleto());
+		io = ges.generaIO();
+		assertFalse(io.verificaCompleto());
+		
 	}
 }
