@@ -7,6 +7,12 @@ public class Token {
 	public int tempo;
 	public int[] archiDisp;
 	public Grafo g;
+
+	public Token(int posizione, int tempo){
+		this.posizione = posizione;
+		this.tempo = tempo;
+		this.archiDisp = g.estraiArchi(getPosizione()-1);
+	}
 	
 	public Token(int posizione, int previous, int tempo, Grafo g){
 		this.posizione = posizione;
