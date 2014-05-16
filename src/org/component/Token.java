@@ -7,6 +7,7 @@ public class Token {
 	public int tempo;
 	public int[] archiDisp;
 	public Grafo g;
+	public int[] percorsoEffettuato = new int[0];
 
 	public Token(int posizione, int tempo){
 		this.posizione = posizione;
@@ -52,6 +53,21 @@ public class Token {
 		this.archiDisp = g.estraiArchi(getPosizione()-1);
 	}
 
+	public int[] getPercorsoEffettuato() {
+		return percorsoEffettuato;
+	}
+
+	public void setPercorsoEffettuato(int[] percorsoEffettuato) {
+		this.percorsoEffettuato = percorsoEffettuato;
+	}
+	
+	public void reset(){
+		setPosizione(1);
+		setPrevious(1);
+		setTempo(0);
+		setPercorsoEffettuato(new int[0]);
+	}
+
 	/** Metodi di Move **/
 	
 	public void move(int nodo){
@@ -63,6 +79,7 @@ public class Token {
 //		System.out.println("posizione attuale: "+getPosizione()+" Tempo: "+getTempo());
 		aggiornaTempo(archiDisp[nodo-1]);
 		setPosizione(nodo);
+		aggiornaPercorso(getPosizione());
 		setArchiDisp();
 		
 //		System.out.println("posizione aggiornata: "+getPosizione()+" Tempo aggiornato: "+getTempo());
@@ -190,5 +207,34 @@ public class Token {
 		}
 
 	}
+	
+	/** Metodi di Percorso **/
 
+	public void aggiornaPercorso(int p){
+		
+		int[] percorso = new int[this.getPercorsoEffettuato().length+1];
+		
+		for (int i = 0; i<percorso.length; i++){
+			if(i<percorso.length-1){
+				percorso[i] = getPercorsoEffettuato()[i];
+			} else {
+				percorso[i] = p;
+			}
+		}
+		
+		setPercorsoEffettuato(percorso);
+	
+	}
+	
+	public void toString(int[] percorso){
+		System.out.print("Stazioni visitate: ");
+		for (int i = 0; i<percorso.length; i++){
+			if (i==percorso.length-1) {
+				System.out.println(" "+percorso[i]+" ");
+			} else {
+				System.out.print(" "+percorso[i]+" ");
+			}
+		}
+	}
+	
 }

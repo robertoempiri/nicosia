@@ -43,6 +43,10 @@ public class Algoritmo1 {
 								+arrayToken[i].getTempo());
 		}
 		
+		for (int i = 0; i<arrayToken.length; i++){
+			arrayToken[i].toString(arrayToken[i].getPercorsoEffettuato());
+		}
+		
 		System.out.println();
 		System.out.println("FINE ESECUZIONE");
 		System.out.println();
@@ -74,6 +78,11 @@ public class Algoritmo1 {
 					+arrayToken[i].getPosizione()+" Posizione precedente: "
 							+arrayToken[i].getPrevious()+" Tempo attuale: "
 								+arrayToken[i].getTempo());
+		}
+		
+		for (int i = 0; i<arrayToken.length; i++){
+			System.out.println("Macchina n."+i);
+			arrayToken[i].toString(arrayToken[i].getPercorsoEffettuato());
 		}
 		
 		System.out.println();

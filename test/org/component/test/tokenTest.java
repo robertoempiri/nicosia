@@ -115,7 +115,7 @@ public class tokenTest {
 		In_Out io = ges.generaIO();
 		
 		while(!io.verificaCompleto()) {
-			assertTrue(t.move2IO(io));
+			t.move2IO(io);
 			t.consegnaRitiro(io, t.getPosizione());
 			io.toString(io);
 		}
@@ -144,4 +144,29 @@ public class tokenTest {
 		assertEquals(20, t.getTempo());
 	
 	}
+	
+	@Test
+	public void resetTest(){
+		
+		t = new Token(4,3,12, ges.generaGrafo());
+		int[] a = new int[2];
+		a[0] = 1;
+		a[1] = 3;
+		t.setPercorsoEffettuato(a);
+		
+		assertEquals(4, t.getPosizione());
+		assertEquals(3, t.getPrevious());
+		assertEquals(12, t.getTempo());
+		assertEquals(1, t.getPercorsoEffettuato()[0]);
+		assertEquals(3, t.getPercorsoEffettuato()[1]);
+		
+		t.reset();
+		
+		assertEquals(1, t.getPosizione());
+		assertEquals(1, t.getPrevious());
+		assertEquals(0, t.getTempo());
+		assertEquals(0, t.getPercorsoEffettuato().length);
+
+	}
+	
 }

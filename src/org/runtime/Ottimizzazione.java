@@ -23,10 +23,13 @@ public class Ottimizzazione{
 		Algoritmo1 alg = new Algoritmo1(g, ges.generaIO(), ges.generaArrayToken());
 		
 		alg.greedy();
+		alg.io = ges.generaIO();
 		
-		Algoritmo1 alg2 = new Algoritmo1(g, ges.generaIO(), ges.generaArrayToken());
+		for (int i = 0; i<alg.arrayToken.length; i++){
+			alg.arrayToken[i].reset();
+		}
 		
-		alg2.greedyPlus();
+		alg.greedyPlus();
 		
 	}
 
