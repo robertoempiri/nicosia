@@ -1,5 +1,8 @@
 package org.component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class In_Out {
 
 	private int[] consegne;
@@ -76,5 +79,25 @@ public class In_Out {
 		}
 
 	}
-
+	
+	public List<Integer> toSingleList(){
+		
+		List<Integer> a = new ArrayList<Integer>();
+		
+		for (Integer integer : this.consegne) {
+			a.add(integer);
+		}
+		for (Integer integer : this.ritiri) {
+			a.add(integer);
+		}
+	
+		return a;
+	}
+	
+	public List<Integer> aggiornaIo(int a, int b, List<Integer> io){
+		io.remove(a);
+		io.remove(b);
+		return io;
+	}
+	
 }

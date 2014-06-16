@@ -2,6 +2,8 @@ package org.component.test;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.component.In_Out;
 import org.component.Token;
 import org.component.GestoreFile;
@@ -38,5 +40,13 @@ public class In_OutTest {
 		io = ges.generaIO();
 		assertFalse(io.verificaCompleto());
 		
+	}
+	
+	@Test
+	public void toSingleArrayTest(){
+		List<Integer> a = ges.generaIO().toSingleList();
+		for (Integer integer : a) {
+			System.out.println(integer);
+		}
 	}
 }

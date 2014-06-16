@@ -162,7 +162,7 @@ public class GestoreFile {
 
 		return i;
 	}
-
+	
 	/** Metodi di I/O **/
 
 	public In_Out generaIO() {
