@@ -1,90 +1,76 @@
 package org.component;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Grafo {
 
-	private int[][] grafo;
-	private int m;
-	private int n;
+	private List<List<Integer>> grafo;
 
-	public Grafo(int m, int n){
-		this.m = m;
-		this.n = n;
-		this.grafo = new int[m][n];
+	public Grafo(){
+		this.grafo = new ArrayList<List<Integer>>();
 	}
 
-	public int[][] getGrafo() {
+	public List<List<Integer>> getGrafo() {
 		return grafo;
 	}
 
-	public void setGrafo(int[][] grafo) {
+	public void setGrafo(List<List<Integer>> grafo) {
 		this.grafo = grafo;
 	}
 
-	public int getElement(Grafo g, int m, int n) {
-		return grafo[m][n];
+	public int getElement(int m, int n) {
+		return this.grafo.get(m).get(n);
 	}
 
 	public void setElement(int m, int n, int set) {
-		grafo[m][n] = set;
+		this.grafo.get(m).remove(n);
+		this.grafo.get(m).add(n, set);
 	}
 
 	public int getM() {
-		return m;
+		return this.grafo.size();
 	}
-
-	public void setM(int m) {
-		this.m = m;
-		this.grafo = new int[m][this.n];
-	}
-
 
 	public int getN() {
-		return n;
+		return this.grafo.get(0).size();
 	}
 
-	public void setN(int n) {
-		this.n = n;
-		this.grafo = new int[this.m][n];
+	public List<Integer> estraiArchi(int i){
+		if(i<getM()){
+			return this.grafo.get(i);
+		} else {
+			return null;
+		}
+		
 	}
 
-	public int[] estraiArchi(int i){
-		int[][] a = getGrafo();
-		if (i<getN()) {
-			return a[i];
-		} else return null;
+	public String toString(){
 
-	}
-
-	public void toString(Grafo g){
-
-		System.out.println("Grafo "+g.getM()+"x"+g.getN());
-		for (int i = 0; i<this.m; i++){
-			for (int j = 0; j<this.n; j++){
-				if (j==0){
-					System.out.print("{["+g.getElement(g, i, j)+"]");	
-				}
-
-				if (j!=0 && j!=this.n-1)
-					System.out.print("["+g.getElement(g, i, j)+"]");
-
-				if (j==this.n-1) {
-					System.out.println("["+g.getElement(g, i, j)+"]}");
+		String s = "Grafo "+this.getM()+"x"+this.getN()+"\n";
+		for (List<Integer> archi : this.grafo) {
+			for (Iterator<Integer> iterator = archi.iterator(); iterator.hasNext();) {
+				Integer integer = iterator.next();
+				if(iterator.hasNext()){
+					s = s + "["+integer+"]";
+				} else {
+					s = s + "["+integer+"]\n";
 				}
 			}
 		}
+		
+		return s;
 	}
 	
-	public void toString(int[] archiDisp){
+	public String toString(List<Integer> archiDisp){
 		
-		System.out.println("Set di archi a disposizione: ");
+		String s = "Set di archi a disposizione: \n";
 		
-		for (int i = 0; i<archiDisp.length; i++){
-			if (i==archiDisp.length-1) {
-				System.out.println("["+archiDisp[i]+"]");
-			} else {
-			System.out.print("["+archiDisp[i]+"]");
-			}
+		for (int i : archiDisp) {
+			s = s + "["+i+"]";
 		}
+		return s;
 		
 	}
 

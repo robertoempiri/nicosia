@@ -2,6 +2,9 @@ package org.component.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.component.Grafo;
 import org.component.GestoreFile;
 import org.junit.Test;
@@ -75,14 +78,15 @@ public class gestoreFileTest {
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
-		int[] a = new int[ges.ottieniDim("localita consegna ci")];
-		ges.popolaIO(a, "localita consegna ci");
+		List<Integer> consegne = new ArrayList<Integer>();
+		ges.popolaIO(consegne, "localita consegna ci");
 		
-		int[] b = new int[ges.ottieniDim("localita ritiro ri")];
-		ges.popolaIO(b, "localita ritiro ri");
+		List<Integer> ritiri = new ArrayList<Integer>();
+		ges.popolaIO(ritiri, "localita ritiro ri");
 		
-		assertEquals(7, a[2]);
-		assertEquals(4, b[1]);
+		assertTrue(7 == consegne.get(2));
+		assertTrue(4 == ritiri.get(1));
+		assertTrue(14 == consegne.get(6));
 		
 	}
 	

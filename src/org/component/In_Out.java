@@ -1,82 +1,95 @@
 package org.component;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class In_Out {
 
-	private int[] consegne;
-	private int[] ritiri;
+	private List<Integer> consegne;
+	private List<Integer> ritiri;
 
-	public In_Out(int[] consegne, int[] arrivi){
+	public In_Out(List<Integer> consegne, List<Integer> ritiri){
 		this.consegne = consegne;
-		this.ritiri = arrivi;
+		this.ritiri = ritiri;
 	}
 
-	public int[] getConsegne() {
+	public List<Integer> getConsegne() {
 		return consegne;
 	}
 
-	public void setConsegne(int[] consegne) {
+	public void setConsegne(List<Integer> consegne) {
 		this.consegne = consegne;
 	}
 
-	public int[] getRitiri() {
+	public List<Integer> getRitiri() {
 		return ritiri;
 	}
 
-	public void setRitiri(int[] ritiri) {
+	public void setRitiri(List<Integer> ritiri) {
 		this.ritiri = ritiri;
 	}
 	
-	public int[] aggiornaIo(int a, int[] io){
-		
-		int[] aggiornato = new int[io.length-1];
-		int i = 0;
-		int agg = 0;
-		
-		while(i<io.length){
-			if (io[i]!=a){
-				aggiornato[agg] = io[i];
-				agg++;
-			}
-			i++;
-		}
+	public void aggiornaConsegne(int a){
+		this.consegne.remove(this.consegne.indexOf(a));
+	}
 	
-		return aggiornato;
+	public void aggiornaRitiri(int a){
+		this.ritiri.remove(this.ritiri.indexOf(a));
 	}
 	
 	public boolean verificaCompleto(){
 		
-		if (this.consegne.length==0 && this.ritiri.length==0) {
+		if (this.consegne.isEmpty() && this.ritiri.isEmpty()) {
 			return true;
 		} else {
 			return false;
 		}
 		
 	}
+	
+	public boolean verificaRitiriCompleto(){
+		
+		if (this.ritiri.isEmpty()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean verificaConsegneCompleto(){
+		
+		if (this.consegne.isEmpty()){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-	public void toString(In_Out io){
-
-		for (int i = 0; i<this.consegne.length; i++) {
-			if (i==this.consegne.length-1) {
-				System.out.println(io.getConsegne()[i]+";");
-			} else if(i==0){
-				System.out.print("Consegne da effettuare ai nodi: "+io.getConsegne()[i]+"-");
-			} else { 
-				System.out.print(io.getConsegne()[i]+"-");
+	@Override
+	public String toString(){
+		
+		String s = "Consegne da effettuare ai nodi: ";
+		
+		for (Integer i : this.consegne) {
+			if(this.consegne.indexOf(i) != this.consegne.size()-1) {
+				s = s + String.valueOf(i) + " - ";
+			} else {
+				s = s + String.valueOf(i) + ";\n";				
 			}
 		}
-
-		for (int i1 = 0; i1<this.ritiri.length; i1++) {
-			if (i1==this.ritiri.length-1) {
-				System.out.println(io.getRitiri()[i1]+";");
-			} else if(i1==0){
-				System.out.print("Ritiri da effettuare ai nodi: "+io.getRitiri()[i1]+"-");
-			} else { 
-				System.out.print(io.getRitiri()[i1]+"-");
+		
+		s = s + "Ritiri da effettuare ai nodi: ";
+		
+		for (Integer i : this.ritiri) {
+			if(this.ritiri.indexOf(i) != this.ritiri.size()-1) {
+				s = s + String.valueOf(i) + " - ";
+			} else {
+				s = s + String.valueOf(i) + ";\n";				
 			}
 		}
+		
+		return s;
 
 	}
 	
@@ -92,12 +105,5 @@ public class In_Out {
 		}
 	
 		return a;
-	}
-	
-	public List<Integer> aggiornaIo(int a, int b, List<Integer> io){
-		io.remove(a);
-		io.remove(b);
-		return io;
-	}
-	
+	}	
 }

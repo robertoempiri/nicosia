@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GestoreFile {
 
@@ -21,18 +23,71 @@ public class GestoreFile {
 
 	public Grafo generaGrafo(){
 
-		g = new Grafo(0, 0);
+		g = new Grafo();
 
-		g.setM(ottieniDim("Tempi tij"));
-
-		g.setN(ottieniDim("Tempi tij"));
-
-		popolaGrafo(g, g.getM());
+		popolaGrafo(g);
 
 		return g;
 
 	}
 
+	public void popolaGrafo(Grafo g) {
+		try {
+			f = new FileReader(path);
+		} catch (FileNotFoundException e) {
+			System.out.println(e.toString()+" errore fileNotFound");
+			e.printStackTrace();
+		}
+		
+		b = new BufferedReader(f);
+
+		boolean finito = false;
+		boolean popola = false;
+		String s = null;
+		
+		while (!finito){
+			
+			List<Integer> nextLine = new ArrayList<Integer>();
+			
+			while (popola && s!= null) {
+				
+				if (s.contains(" ")){
+					nextLine.add(Integer.parseInt(s.substring(0, s.indexOf(" "))));
+					s = s.substring(s.indexOf(" ")+1);
+				} else {
+					nextLine.add(Integer.parseInt(s.substring(0, s.length())));
+					s = null;
+					g.getGrafo().add(nextLine);
+				}
+			}
+			
+			try {
+				s = b.readLine();
+			} catch (IOException e) {
+				System.out.println("Something fail on bufferedreader");
+				e.printStackTrace();
+			}
+			
+			if (s!=null && s.equals("Tempi tij")) {
+				popola = true;
+				try {
+					s = b.readLine();
+				} catch (IOException e) {
+					System.out.println("Something fail on bufferedreader");
+					e.printStackTrace();
+				}
+			} else if (s==null) {
+				finito = true;
+			}
+		}
+		try {
+			b.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void popolaGrafo(Grafo g, int i) {
 
 		try {
@@ -106,69 +161,13 @@ public class GestoreFile {
 		}
 
 	}
-
-	public int ottieniDim(String alpha) {
-
-		try {
-			f = new FileReader(path);
-		} catch (FileNotFoundException e) {
-			System.out.println(e.toString()+" errore fileNotFound");
-			e.printStackTrace();
-		}
-
-		b = new BufferedReader(f);
-
-		String s = null;
-
-		boolean finito = false;
-		boolean misura = false;
-		int i = 1;
-
-		while (!finito){
-
-			try {
-				s = b.readLine();
-			} catch (IOException e) {
-				System.out.println("Something fail on bufferedreader");
-				e.printStackTrace();
-			}
-
-			while (misura){
-
-				s = s.substring(s.indexOf(" ")+1);
-
-				if (!s.contains(" ")) {
-					misura = false;
-					finito = true;
-				}
-
-				//				System.out.print("Dimensioni di: {"+s+"}");
-				//				System.out.println(" = "+i);
-
-				i++;
-
-			}
-
-			if (s!=null && s.equals(alpha)) misura = true;
-
-		}
-
-		try {
-			b.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return i;
-	}
 	
 	/** Metodi di I/O **/
 
 	public In_Out generaIO() {
 
-		int[] consegne = new int[ottieniDim("localita consegna ci")];
-		int[] ritiri = new int[ottieniDim("localita ritiro ri")];
+		List<Integer> consegne = new ArrayList<Integer>(); //int[ottieniDim("localita consegna ci")];
+		List<Integer> ritiri = new ArrayList<Integer>(); //int[ottieniDim("localita ritiro ri")];
 
 		popolaIO(consegne, "localita consegna ci");
 		popolaIO(ritiri, "localita ritiro ri");
@@ -179,8 +178,12 @@ public class GestoreFile {
 
 	}
 
-	public void popolaIO(int[] a, String alpha){
-
+	public void popolaIO(List<Integer> a, String alpha){
+		
+		boolean finito = false;
+		boolean popola = false;
+		String s = null;
+		
 		try {
 			f = new FileReader(path);
 		} catch (FileNotFoundException e) {
@@ -189,11 +192,6 @@ public class GestoreFile {
 		}
 
 		b = new BufferedReader(f);
-
-		boolean finito = false;
-		boolean popola = false;
-		String s = null;
-		int j;
 
 		while (!finito){
 
@@ -204,40 +202,23 @@ public class GestoreFile {
 				e.printStackTrace();
 			}
 
-			//			System.out.println("Riga di input.txt = "+s);
+			while (popola) {
+				if (s.contains(" ")) {
 
-			if (popola) {
+					a.add(Integer.parseInt((s.substring(0, s.indexOf(" ")))));
 
-				for (j = 0; j<a.length; j++){
+					s = s.substring(s.indexOf(" ")+1);
 
-					if (s.contains(" ")) {
+				} else {
 
-						//						System.out.println("Elemento da inject: "+Integer.parseInt((s.substring(0, s.indexOf(" "))))+";");
-
-						a[j] = Integer.parseInt((s.substring(0, s.indexOf(" "))));
-
-						s = s.substring(s.indexOf(" ")+1);
-
-					} else {
-						//					System.out.println("Elemento da inject: "+Integer.parseInt(s.substring(0, s.length()))+";");
-
-						a[j] = Integer.parseInt((s.substring(0, s.length())));
-					}
-
-					//				System.out.println(s);
-
-					//					System.out.println("elemento: ["+j+"]= "+a[j]);
+					a.add(Integer.parseInt((s.substring(0, s.length()))));
+					popola = false;
+					finito = true;
 				}
-
-				finito = true;
 			}
 
 			if (s!=null && s.equals(alpha)) popola = true;
-
 		}
-
-
-
 	}
 	
 	/** Metodi di parametri **/
@@ -282,19 +263,19 @@ public class GestoreFile {
 		
 	}
 	
-	public Token[] generaArrayToken(){
+	public List<Token> generaTokenList(){
 		
 		int nToken = parametri("Numero mezzi m");
 		
-		Token[] arrayToken = new Token[nToken];
+		List<Token> tokenList = new ArrayList<Token>();
 		
-		System.out.println("Numero di mezzi a disposizione: "+arrayToken.length);
+		System.out.println("Numero di mezzi a disposizione: "+nToken);
 		
-		for (int i = 0;i<arrayToken.length; i++){
-			arrayToken[i] = new Token(1,0,0,g);
+		for (int i = 0; i<nToken; i++){
+			tokenList.add(new Token(1,0,0,g));
 		}
 		
-		return arrayToken;
+		return tokenList;
 	}
 
 	/** Metodi di classe **/

@@ -117,7 +117,7 @@ public class tokenTest {
 		while(!io.verificaCompleto()) {
 			t.move2IO(io);
 			t.consegnaRitiro(io, t.getPosizione());
-			io.toString(io);
+			System.out.println(io.toString());
 		}
 		
 		assertFalse(t.move2IO(io));

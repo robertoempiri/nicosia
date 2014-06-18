@@ -15,33 +15,34 @@ public class Ottimizzazione{
 
 		Grafo g = ges.generaGrafo();
 
-		g.toString(g);
+		System.out.println(g.toString());
 
 		In_Out io = ges.generaIO();
 
-		io.toString(io);
+		System.out.println(io.toString());
 
-		Algoritmo1 alg = new Algoritmo1(g, ges.generaIO(), ges.generaArrayToken());
+		Algoritmo1 alg = new Algoritmo1(g, ges.generaIO(), ges.generaTokenList());
 
 		alg.greedy();
 		alg.io = ges.generaIO();
 
-		for (Token t : alg.arrayToken) {
+		for (Token t : alg.tokenList) {
 			t.reset();
 		}
 
 		alg.greedyPlus();
 
 		Risultato result = new Risultato();
+		for (Token t : alg.tokenList) {
+			result.getPercorsi().put(alg.tokenList.indexOf(t)+1, t.getPercorsoEffettuato());
+			result.getTempi().put(alg.tokenList.indexOf(t)+1, t.getTempo());
+		}
+		
+		System.out.println(result.toString());
 
-		result.setPercorso1(alg.arrayToken[0].getPercorsoEffettuato());
-		result.setPercorso2(alg.arrayToken[1].getPercorsoEffettuato());
-		result.setTempo1(alg.arrayToken[0].getTempo());
-		result.setTempo2(alg.arrayToken[1].getTempo());
-
-		Algoritmo2 alg2 = new Algoritmo2(g, ges.generaIO(), ges.generaArrayToken());
-
-		alg2.branchAndBound(result);
+//		Algoritmo2 alg2 = new Algoritmo2(g, ges.generaIO(), ges.generaArrayToken());
+//
+//		alg2.branchAndBound(result);
 
 	}
 

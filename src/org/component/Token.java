@@ -1,13 +1,16 @@
 package org.component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Token {
 
 	public int posizione;
 	public int previous;
 	public int tempo;
-	public int[] archiDisp;
+	public List<Integer> archiDisp;
 	public Grafo g;
-	public int[] percorsoEffettuato = new int[0];
+	public List<Integer> percorsoEffettuato = new ArrayList<Integer>();
 
 	public Token(int posizione, int tempo){
 		this.posizione = posizione;
@@ -53,11 +56,11 @@ public class Token {
 		this.archiDisp = g.estraiArchi(getPosizione()-1);
 	}
 
-	public int[] getPercorsoEffettuato() {
+	public List<Integer> getPercorsoEffettuato() {
 		return percorsoEffettuato;
 	}
 
-	public void setPercorsoEffettuato(int[] percorsoEffettuato) {
+	public void setPercorsoEffettuato(List<Integer> percorsoEffettuato) {
 		this.percorsoEffettuato = percorsoEffettuato;
 	}
 	
@@ -65,7 +68,7 @@ public class Token {
 		setPosizione(1);
 		setPrevious(1);
 		setTempo(0);
-		setPercorsoEffettuato(new int[0]);
+		setPercorsoEffettuato(new ArrayList<Integer>());
 	}
 
 	/** Metodi di Move **/
@@ -77,7 +80,7 @@ public class Token {
 		setPrevious(getPosizione());
 //		System.out.println("nodo da visitare "+nodo+" valore archi target "+archiDisp[nodo-1]);
 //		System.out.println("posizione attuale: "+getPosizione()+" Tempo: "+getTempo());
-		aggiornaTempo(archiDisp[nodo-1]);
+		aggiornaTempo(archiDisp.get(nodo-1));
 		setPosizione(nodo);
 		aggiornaPercorso(getPosizione());
 		setArchiDisp();
@@ -86,12 +89,10 @@ public class Token {
 		
 	}
 	
-	public void movePercorso(int[] nodi){
+	public void movePercorso(List<Integer> nodi){
 		
-		for (int i = 0; i<nodi.length; i++){
-
-			move(nodi[i]);
-			
+		for (Integer i : nodi) {
+			move(i);
 		}
 	}
 	
@@ -99,12 +100,11 @@ public class Token {
 
 		int minimo = 10000;
 		int index = 0;
-			
-		for(int i=0; i<archiDisp.length; i++) {
-
-			if (archiDisp[i]<minimo && archiDisp[i]!=0) {	
-				minimo = archiDisp[i];
-				index = i;
+		
+		for (Integer i : archiDisp) {
+			if (i<minimo && i!=0){
+				minimo = i;
+				index = archiDisp.indexOf(i);
 			}
 		}
 		
@@ -116,69 +116,50 @@ public class Token {
 
 		int minimo = 10000;
 		int index = 10000;
-			
-		for(int i=0; i<archiDisp.length; i++) {
-
-			if (i !=getPrevious()-1 && archiDisp[i]<minimo && archiDisp[i]!=0) {	
-				minimo = archiDisp[i];
-				index = i;
-			}
-		}
 		
+		for (Integer i : archiDisp) {
+			if (i<minimo && i!=0 && i!=getPrevious()-1){
+				minimo = i;
+				index = archiDisp.indexOf(i);
+			}
+		}		
 		move(index+1);
 	}
 	
 	public boolean move2IO(In_Out io){
 		
-		double i;
-
-		if (!io.verificaCompleto()) {
-			i = Math.random();
-			
-			if (i<=0.5 && io.getConsegne().length!=0){
-				move(io.getConsegne()[0]);
-				return true;
-			}
-
-			if (i>0.5 && io.getRitiri().length!=0){
-				move(io.getRitiri()[0]);
-				return true;
-			}
-			
-		} else if (io.getConsegne().length!=0){
-			move(io.getConsegne()[0]);
+		if(!io.verificaRitiriCompleto()){
+			move(io.getRitiri().get(0));
 			return true;
-		} else if (io.getRitiri().length!=0){
-			move(io.getRitiri()[0]);
+		} else if (!io.verificaConsegneCompleto()) {
+			move(io.getConsegne().get(0));
 			return true;
+		} else {
+			return false;
 		}
-		
-		return false;
 		
 	}
 	
 	public void minMove2IO(In_Out io){
 		int minimo = 10000;
 		int index = 10000;
-			
-		for(int i=0; i<io.getConsegne().length; i++) {
-
-//			System.out.print("["+archiDisp[io.getConsegne()[i]-1]+"] ");
-			if (archiDisp[io.getConsegne()[i]-1]<minimo && archiDisp[io.getConsegne()[i]-1]!=0) {	
-				minimo = archiDisp[io.getConsegne()[i]-1];
-				index = io.getConsegne()[i];
+		if(!io.verificaRitiriCompleto()){
+			for (Integer i : io.getRitiri()) {
+				if(archiDisp.get(i-1)<minimo && archiDisp.get(i-1) != 0){
+					minimo = archiDisp.get(i-1);
+					index = i;
+				}
 			}
-		}
-		
-		for(int i=0; i<io.getRitiri().length; i++) {
-
-			if (archiDisp[io.getRitiri()[i]-1]<minimo && archiDisp[io.getRitiri()[i]-1]!=0) {	
-				minimo = archiDisp[io.getRitiri()[i]-1];
-				index = io.getRitiri()[i];
+			move(index);
+		} else if (!io.verificaConsegneCompleto()) {
+			for (Integer i : io.getConsegne()) {
+				if(archiDisp.get(i-1)<minimo && archiDisp.get(i-1) != 0){
+					minimo = archiDisp.get(i-1);
+					index = i;
+				}
 			}
+			move(index);
 		}
-		
-		move(index);
 	}
 	
 	/** Metodi di Costo **/
@@ -191,17 +172,17 @@ public class Token {
 	
 	public void consegnaRitiro(In_Out io, int posizione){
 
-		for(int i = 0;i<io.getConsegne().length;i++){
-			if (posizione == io.getConsegne()[i]){
-				io.setConsegne(io.aggiornaIo(io.getConsegne()[i], io.getConsegne()));
+		for(int i = 0;i<io.getConsegne().size();i++){
+			if (posizione == io.getConsegne().get(i)){
+				io.aggiornaConsegne(io.getConsegne().get(i));
 				aggiornaTempo(20);
 			}
 		}
 
-		for(int i1 = 0;i1<io.getRitiri().length;i1++){
-			if (posizione == io.getRitiri()[i1]){
+		for(int i1 = 0;i1<io.getRitiri().size();i1++){
+			if (posizione == io.getRitiri().get(i1)){
 //				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
-				io.setRitiri(io.aggiornaIo(io.getRitiri()[i1], io.getRitiri()));
+				io.aggiornaRitiri(io.getRitiri().get(i1));
 				aggiornaTempo(20);
 			}
 		}
@@ -211,30 +192,17 @@ public class Token {
 	/** Metodi di Percorso **/
 
 	public void aggiornaPercorso(int p){
-		
-		int[] percorso = new int[this.getPercorsoEffettuato().length+1];
-		
-		for (int i = 0; i<percorso.length; i++){
-			if(i<percorso.length-1){
-				percorso[i] = getPercorsoEffettuato()[i];
-			} else {
-				percorso[i] = p;
-			}
-		}
-		
-		setPercorsoEffettuato(percorso);
-	
+		this.percorsoEffettuato.add(p);	
 	}
 	
-	public void toString(int[] percorso){
-		System.out.print("Stazioni visitate: ");
-		for (int i = 0; i<percorso.length; i++){
-			if (i==percorso.length-1) {
-				System.out.println(" "+percorso[i]+" ");
-			} else {
-				System.out.print(" "+percorso[i]+" ");
-			}
+	public String toString(){
+		
+		String s = "Stazioni visitate: \n";
+
+		for (Integer i : this.percorsoEffettuato) {
+			s = s + " " +i+ " ";
 		}
+		return s;
 	}
 	
 }

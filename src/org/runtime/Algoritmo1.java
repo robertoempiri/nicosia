@@ -1,5 +1,7 @@
 package org.runtime;
 
+import java.util.List;
+
 import org.component.Grafo;
 import org.component.In_Out;
 import org.component.Token;
@@ -8,12 +10,12 @@ public class Algoritmo1 {
 
 	public Grafo g;
 	public In_Out io;
-	public Token[] arrayToken;
+	public List<Token> tokenList;
 	
-	public Algoritmo1(Grafo g, In_Out io, Token[] arrayToken) {
+	public Algoritmo1(Grafo g, In_Out io, List<Token> tokenList) {
 		this.g = g;
 		this.io = io;
-		this.arrayToken = arrayToken;
+		this.tokenList = tokenList;
 	}
 	
 	public void greedy(){
@@ -44,7 +46,7 @@ public class Algoritmo1 {
 		}
 		
 		for (int i = 0; i<arrayToken.length; i++){
-			arrayToken[i].toString(arrayToken[i].getPercorsoEffettuato());
+			System.out.println(arrayToken[i].toString());
 		}
 		
 		System.out.println();
@@ -82,7 +84,7 @@ public class Algoritmo1 {
 		
 		for (int i = 0; i<arrayToken.length; i++){
 			System.out.println("Macchina n."+i);
-			arrayToken[i].toString(arrayToken[i].getPercorsoEffettuato());
+			System.out.println(arrayToken[i].toString());
 		}
 		
 		System.out.println();

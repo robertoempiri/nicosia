@@ -2,6 +2,7 @@ package org.component.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.component.In_Out;
@@ -13,29 +14,29 @@ import org.junit.Test;
 public class In_OutTest {
 	
 	private GestoreFile ges = new GestoreFile("C:/RobertoWorkspace/nicosia/res/input.txt");
-	private Grafo g = ges.generaGrafo();;
-	Token t;
-	In_Out io;
+	private In_Out io;
 
 	@Test
-	public void aggiornaIOTest() {
-
-		t = new Token(4,1,0,g);
+	public void aggiornaConsegneTest() {
+		
 		io = ges.generaIO();
 		
-		int[] a = io.aggiornaIo(4, io.getRitiri());	
+		System.out.println(io.toString());
 		
-		for(int i = 0; i<a.length; i++){
-			assertNotEquals(4, a[i]);
-		}
+		io.aggiornaConsegne(5);
+		
+		System.out.println(io.toString());
+		
+		assertFalse(io.getConsegne().contains(5));
+		
 	}
 	
 	@Test
 	public void verificaCompletoTest(){
 		
-		int[] a = new int[0];
-		int[] b = new int[0];
-		In_Out io1 = new In_Out(a,b);
+		List<Integer> consegne = new ArrayList<Integer>();
+		List<Integer> ritiri = new ArrayList<Integer>();
+		In_Out io1 = new In_Out(consegne, ritiri);
 		assertTrue(io1.verificaCompleto());
 		io = ges.generaIO();
 		assertFalse(io.verificaCompleto());
@@ -43,10 +44,16 @@ public class In_OutTest {
 	}
 	
 	@Test
-	public void toSingleArrayTest(){
-		List<Integer> a = ges.generaIO().toSingleList();
-		for (Integer integer : a) {
-			System.out.println(integer);
-		}
+	public void toStringTest(){
+		List<Integer> consegne = new ArrayList<Integer>();
+		List<Integer> ritiri = new ArrayList<Integer>();
+		consegne.add(1);
+		consegne.add(2);
+		consegne.add(3);
+		ritiri.add(4);
+		ritiri.add(5);
+		ritiri.add(6);
+		In_Out io = new In_Out(consegne, ritiri);
+		System.out.println(io.toString());
 	}
 }
