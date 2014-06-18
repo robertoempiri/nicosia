@@ -181,7 +181,6 @@ public class Token {
 
 		for(int i1 = 0;i1<io.getRitiri().size();i1++){
 			if (posizione == io.getRitiri().get(i1)){
-//				System.out.println(posizione+" posizione "+io.getRitiri()[i1]+" ritiro in posizione");
 				io.aggiornaRitiri(io.getRitiri().get(i1));
 				aggiornaTempo(20);
 			}

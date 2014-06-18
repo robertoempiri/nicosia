@@ -20,76 +20,60 @@ public class Algoritmo1 {
 	
 	public void greedy(){
 		
-		System.out.println();
-		System.out.println("Esecuzione algoritmo GREEDY");
-		System.out.println();
+		System.out.println("Esecuzione algoritmo GREEDY\n");
 		
 		while(!io.verificaCompleto()){
 
-			for (int i = 0; i<arrayToken.length; i++){
-				arrayToken[i].move2IO(io);
-				arrayToken[i].consegnaRitiro(io, arrayToken[i].getPosizione());
-				System.out.println("Macchina n: "+i+" Posizione corrente: "
-						+arrayToken[i].getPosizione()+" Posizione precedente: "
-								+arrayToken[i].getPrevious()+" Tempo attuale: "
-									+arrayToken[i].getTempo());
-			}
-			
+			for (Token t : tokenList) {
+				t.move2IO(io);
+				t.consegnaRitiro(io, t.getPosizione());
+				System.out.println("Macchina n: "+tokenList.indexOf(t)+" "+toString(tokenList.get(tokenList.indexOf(t))));
+			}			
 		}
 		
-		for (int i = 0; i<arrayToken.length; i++){
-			arrayToken[i].move(1);
-			System.out.println("Macchina n: "+i+" Posizione corrente: "
-					+arrayToken[i].getPosizione()+" Posizione precedente: "
-							+arrayToken[i].getPrevious()+" Tempo attuale: "
-								+arrayToken[i].getTempo());
+		for (Token t : tokenList) {
+			t.move(1);
+			System.out.println("Macchina n: "+tokenList.indexOf(t)+" "+toString(tokenList.get(tokenList.indexOf(t))));
 		}
 		
-		for (int i = 0; i<arrayToken.length; i++){
-			System.out.println(arrayToken[i].toString());
+		for (Token t : tokenList) {
+			System.out.println(t.toString());
 		}
 		
-		System.out.println();
-		System.out.println("FINE ESECUZIONE");
-		System.out.println();
+		System.out.println("FINE ESECUZIONE\n");
 		
 	}
 	
 	public void greedyPlus(){
 		
-		System.out.println();
-		System.out.println("Esecuzione algoritmo GREEDY PLUS");
-		System.out.println();
+		System.out.println("Esecuzione algoritmo GREEDY PLUS\n");
 		
 		while(!io.verificaCompleto()){
 
-			for (int i = 0; i<arrayToken.length; i++){
-				arrayToken[i].minMove2IO(io);
-				arrayToken[i].consegnaRitiro(io, arrayToken[i].getPosizione());
-				System.out.println("Macchina n: "+i+" Posizione corrente: "
-						+arrayToken[i].getPosizione()+" Posizione precedente: "
-								+arrayToken[i].getPrevious()+" Tempo attuale: "
-									+arrayToken[i].getTempo());
-			}
-			
+			for (Token t : tokenList) {
+				t.minMove2IO(io);
+				t.consegnaRitiro(io, t.getPosizione());
+				System.out.println("Macchina n: "+tokenList.indexOf(t)+" "+toString(tokenList.get(tokenList.indexOf(t))));
+			}			
 		}
 		
-		for (int i = 0; i<arrayToken.length; i++){
-			arrayToken[i].move(1);
-			System.out.println("Macchina n: "+i+" Posizione corrente: "
-					+arrayToken[i].getPosizione()+" Posizione precedente: "
-							+arrayToken[i].getPrevious()+" Tempo attuale: "
-								+arrayToken[i].getTempo());
+		for (Token t : tokenList) {
+			t.move(1);
+			System.out.println("Macchina n: "+tokenList.indexOf(t)+" "+toString(tokenList.get(tokenList.indexOf(t))));
 		}
 		
-		for (int i = 0; i<arrayToken.length; i++){
-			System.out.println("Macchina n."+i);
-			System.out.println(arrayToken[i].toString());
+		for (Token t : tokenList) {
+			System.out.println(t.toString());
 		}
 		
-		System.out.println();
-		System.out.println("FINE ESECUZIONE");
-		System.out.println();
+		System.out.println("FINE ESECUZIONE\n");
 		
+	}
+	
+	public String toString(Token n){
+		String s = 	"Posizione corrente: "+n.getPosizione()+ " "+
+					"Posizione precedente: "+n.getPrevious()+ " "+
+					"Tempo attuale: "+n.getTempo();
+		return s;
 	}
 }

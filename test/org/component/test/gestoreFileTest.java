@@ -16,17 +16,6 @@ public class gestoreFileTest {
 	Grafo g;
 	
 	@Test
-	public void ottieniDimTest(){
-
-		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
-		
-		System.out.println("Test ottieniDim");
-		
-		assertEquals(15, ges.ottieniDim("Tempi tij"));		
-		
-	}
-	
-	@Test
 	public void generaGrafoTest(){
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
@@ -42,13 +31,13 @@ public class gestoreFileTest {
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 		
-		g = new Grafo(15, 15);
+		g = new Grafo();
 		
-		ges.popolaGrafo(g, 15);
+		ges.popolaGrafo(g);
 		
 //		System.out.println(g.getElement(g, 2, 1));
 		
-		assertEquals(82,g.getElement(g, 2, 1));
+		assertEquals(82,g.getElement(2, 1));
 		
 	}
 	
@@ -57,18 +46,11 @@ public class gestoreFileTest {
 		
 		ges.setPath("C:/RobertoWorkspace/nicosia/res/input.txt");
 	
-		g = new Grafo(2,2);
-		
-		g.setElement(0, 0, 3);
-		g.setElement(1, 0, 2);
-		g.setElement(0, 1, 1);
-		g.setElement(1, 1, 12);
-		
-		g.toString(g);
+		g = new Grafo();
 		
 		g = ges.generaGrafo();
 		
-		g.toString(g);
+		System.out.println(g.toString());
 		
 		
 	}

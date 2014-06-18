@@ -2,6 +2,9 @@ package org.component.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.component.In_Out;
 import org.component.Token;
 import org.component.GestoreFile;
@@ -149,23 +152,23 @@ public class tokenTest {
 	public void resetTest(){
 		
 		t = new Token(4,3,12, ges.generaGrafo());
-		int[] a = new int[2];
-		a[0] = 1;
-		a[1] = 3;
+		List<Integer> a = new ArrayList<Integer>();
+		a.add(1);
+		a.add(3);
 		t.setPercorsoEffettuato(a);
 		
 		assertEquals(4, t.getPosizione());
 		assertEquals(3, t.getPrevious());
 		assertEquals(12, t.getTempo());
-		assertEquals(1, t.getPercorsoEffettuato()[0]);
-		assertEquals(3, t.getPercorsoEffettuato()[1]);
+		assertTrue(1 == t.getPercorsoEffettuato().get(0));
+		assertTrue(3 == t.getPercorsoEffettuato().get(1));
 		
 		t.reset();
 		
 		assertEquals(1, t.getPosizione());
 		assertEquals(1, t.getPrevious());
 		assertEquals(0, t.getTempo());
-		assertEquals(0, t.getPercorsoEffettuato().length);
+		assertEquals(0, t.getPercorsoEffettuato().size());
 
 	}
 	

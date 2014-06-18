@@ -1,12 +1,14 @@
 package org.component;
 
+// TODO (Refactor of this class)
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Combinazioni {
 
-	List<int[]> consegne;
-	List<int[]> ritiri;
+	List<List<Integer>> consegne;
+	List<List<Integer>> ritiri;
 
 	public Combinazioni(){
 		
