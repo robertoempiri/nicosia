@@ -1,5 +1,7 @@
 package org.runtime;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.component.Grafo;
@@ -75,5 +77,45 @@ public class Algoritmo1 {
 					"Posizione precedente: "+n.getPrevious()+ " "+
 					"Tempo attuale: "+n.getTempo();
 		return s;
+	}
+
+	public void greedyPlusForRitiri() {
+		
+		System.out.println("Esecuzione del GREEDY PLUS per i soli ritiri\n");
+		
+		while(!io.verificaRitiriCompleto()){
+			int index = getTokenMin(tokenList);
+			tokenList.get(index).minMove2IO(io);
+			tokenList.get(index).consegnaRitiro(io, tokenList.get(index).getPosizione());
+			System.out.println("Macchina n: "+index+" "+toString(tokenList.get(index)));
+		}
+	}
+	
+	public void greedyPlusForConsegne() {
+		System.out.println("Esecuzione del GREEDY PLUS per le sole consegne\n");
+		io.setRitiri(new ArrayList<Integer>());
+		
+		while(!io.verificaConsegneCompleto()){
+			int index = getTokenMin(tokenList);
+			tokenList.get(index).minMove2IO(io);
+			tokenList.get(index).consegnaRitiro(io, tokenList.get(index).getPosizione());
+			System.out.println("Macchina n: "+index+" "+toString(tokenList.get(index)));
+		}
+		
+		for (Token t : tokenList) {
+			t.move(1);
+		}		
+	}
+	
+	public int getTokenMin(List<Token> tokenList){
+		int tempoMin = 10000;
+		int index = 10000;
+		for (Token token : tokenList) {
+			if (token.getTempo()<tempoMin){
+				index = tokenList.indexOf(token);
+				tempoMin = tokenList.get(index).getTempo();
+			}
+		}
+		return index;
 	}
 }

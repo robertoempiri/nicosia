@@ -1,167 +1,88 @@
 package org.component;
 
-// TODO (Refactor of this class)
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Combinazioni {
+	
+	public List<Integer> seedList;
+	public List<List<Integer>> combList = new ArrayList<List<Integer>>();
 
-	List<List<Integer>> consegne;
-	List<List<Integer>> ritiri;
-
-	public Combinazioni(){
-		
+	public Combinazioni(List<Integer> percorso){
+		this.seedList = percorso;
 	}
 
-	public void setConsegne(int[] consegne){
-		
-		List<int[]> listResult = new ArrayList<int[]>();
-
-		int[] temp = new int[consegne.length];
-		
-		for (int i = 0;i<consegne.length;i++) {
-			temp[i] = consegne[i];
-		}
-		
-		listResult.add(consegne);
-		
-		for (int i=consegne.length-1; i>=0; i--) {
-			
-			int elemento = consegne[i];
-
-			boolean finito = false;
-
-			while(!finito){
-				int index = 0;
-				boolean trovato = false;
-				while(!trovato){
-					if (temp[index]==elemento){
-						trovato = true;
-					} else {
-						index++;
-					}
-				}
-				if(index!=0){
-					int ntemp = temp[index-1];
-					temp[index-1] = elemento;
-					temp[index] = ntemp;
-				}
-				
-				int[] temp2 = new int[temp.length];
-				
-				for (int j = 0;j<temp.length;j++) {
-					temp2[j] = temp[j];
-				}
-
-				listResult.add(temp2);
-
-				if(temp[0]==elemento){
-					finito = true;
-				}
-			}
-		}
-
-		this.consegne = listResult;
-
-
-	}
-
-	public void setRitiri(int[] ritiri){
-		
-		List<int[]> listResult = new ArrayList<int[]>();
-
-		int[] temp = new int[ritiri.length];
-		
-		for (int i = 0;i<ritiri.length;i++) {
-			temp[i] = ritiri[i];
-		}
-		
-		listResult.add(ritiri);
-		
-		for (int i=ritiri.length-1; i>=0; i--) {
-			
-			int elemento = ritiri[i];
-
-			boolean finito = false;
-
-			while(!finito){
-				int index = 0;
-				boolean trovato = false;
-				while(!trovato){
-					if (temp[index]==elemento){
-						trovato = true;
-					} else {
-						index++;
-					}
-				}
-				if(index!=0){
-					int ntemp = temp[index-1];
-					temp[index-1] = elemento;
-					temp[index] = ntemp;
-				}
-				
-				int[] temp2 = new int[temp.length];
-				
-				for (int j = 0;j<temp.length;j++) {
-					temp2[j] = temp[j];
-				}
-
-				listResult.add(temp2);
-
-				if(temp[0]==elemento){
-					finito = true;
-				}
-			}
-		}
-
-		this.ritiri = listResult;
-
-
-	}
-
-	public List<int[]> getConsegne() {
-		return consegne;
-	}
-
-	public List<int[]> getRitiri() {
-		return ritiri;
-	}
-
-	public boolean compare(int[] eq, int[] eq2){
-		if(eq.length==eq2.length){
-		
-			boolean[] verify = new boolean[eq.length];
-			
-			for (int i = 0; i < eq2.length; i++) {
-				if(eq[i]==eq2[i]){
-					verify[i] = true;
-				} else {
-					verify[i] = false;
-				}
-			}
-			int count = 0;
-			for (int i = 0; i < verify.length; i++) {
-				if(verify[i]){
-					count++;
-				}
-			}
-			if (count==verify.length-1) {
-				return true;
-			} else return false;
-		} else return false;
-	}
-
-	public String toString(int[] percorso){
-		String s = "Stazioni visitate: ";
-		for (int i = 0; i<percorso.length; i++){
-			if (i==percorso.length-1) {
-				s = s+" "+percorso[i]+" ";
-			} else {
-				s = s+" "+percorso[i]+" ";
-			}
-		}
-		return s;
+	public void setCombinazioniListNoTail(List<Integer> percorso){
+		percorso.remove(percorso.size()-1);
+		setRecursiveList4Percorso(percorso, new ArrayList<Integer>());
 	}
 	
+	public void setCombinazioniList(List<Integer> percorso){
+		setRecursiveList4Percorso(percorso, new ArrayList<Integer>());
+	}
+	
+	public void setRecursiveList4Percorso(List<Integer> percorso, List<Integer> result2Add){
+		
+		for(Integer integer : percorso){
+			List<Integer> result2AddTemp = new ArrayList<Integer>();
+			result2AddTemp.addAll(result2Add);
+			result2AddTemp.add(integer);
+			List<Integer> temp = new ArrayList<Integer>();
+			temp.addAll(percorso);
+			temp.remove(integer);
+			if(!temp.isEmpty()){
+				setRecursiveList4Percorso(temp, result2AddTemp);
+			} else {
+				this.combList.add(result2AddTemp);
+			}
+		}
+		
+	}
+	
+	public List<Integer> getSeedList() {
+		return seedList;
+	}
+
+	public void setSeedList(List<Integer> seedList) {
+		this.seedList = seedList;
+	}
+
+	public List<List<Integer>> getCombList() {
+		return combList;
+	}
+
+	public void setCombList(List<List<Integer>> combList) {
+		this.combList = combList;
+	}
+
+	public String toString(){
+		String s = "Lista delle combinazioni a partire da\n";
+		for (Iterator<Integer> iterator = this.seedList.iterator(); iterator.hasNext();) {
+			Integer i = iterator.next();
+			if(iterator.hasNext()){
+				s = s + "[" +i+ "]";
+			} else {
+				s = s + "[" +i+ "]\n";
+			}
+		}
+
+		s = s + "\nLista: \n";
+		int count = 0;
+		for (List<Integer> comb : this.combList) {
+			count++;
+			s = s +"Combinazione n."+ count + " ";
+			for (Iterator<Integer> iterator = comb.iterator(); iterator.hasNext();) {
+				Integer i = iterator.next();
+				if(iterator.hasNext()){
+					s = s + "[" +i+ "]";
+				} else {
+					s = s + "[" +i+ "]\n";
+				}
+			}
+		}
+		
+		return s;
+		
+	}
 }

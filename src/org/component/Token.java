@@ -70,6 +70,16 @@ public class Token {
 		setTempo(0);
 		setPercorsoEffettuato(new ArrayList<Integer>());
 	}
+	
+	public void lega(List<Integer> percorsoEffettuato){
+		setPosizione(percorsoEffettuato.get(percorsoEffettuato.size()-1));
+		if(percorsoEffettuato.size()>2){
+			setPrevious(percorsoEffettuato.get(percorsoEffettuato.size()-2));
+		}
+		setPercorsoEffettuato(new ArrayList<Integer>());
+		setTempo(0);
+		setArchiDisp();
+	}
 
 	/** Metodi di Move **/
 	
@@ -93,6 +103,7 @@ public class Token {
 		
 		for (Integer i : nodi) {
 			move(i);
+			aggiornaTempo(20);
 		}
 	}
 	
@@ -199,7 +210,7 @@ public class Token {
 		String s = "Stazioni visitate: \n";
 
 		for (Integer i : this.percorsoEffettuato) {
-			s = s + " " +i+ " ";
+			s = s +i+ " ";
 		}
 		return s;
 	}

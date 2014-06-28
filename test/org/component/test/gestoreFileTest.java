@@ -72,4 +72,6 @@ public class gestoreFileTest {
 		
 	}
 	
+	// TODO (GENERATOKENLIST TEST)
+	
 }
